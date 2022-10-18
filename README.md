@@ -22,7 +22,7 @@ $ make serve
 ### 3. kongaの設定
 
 kongaの管理画面にアクセスしてadminユーザーを作成する。
-http://localhost:28080
+http://localhost:8080
 
 #### 3-1. コネクションを作成
 

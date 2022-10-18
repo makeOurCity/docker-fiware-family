@@ -16,3 +16,7 @@ jobs:
       - name: setup database
         run: |
           make build
+
+      - name: launch servers
+        run: |
+          make serve
