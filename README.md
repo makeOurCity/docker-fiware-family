@@ -1,5 +1,7 @@
 # Docker FIWARE Family
 
+[![test build](https://github.com/ushios/docker-fiware-family/actions/workflows/test_build.yml/badge.svg)](https://github.com/ushios/docker-fiware-family/actions/workflows/test_build.yml)
+
 # Getting Started
 
 ## Using Docker
