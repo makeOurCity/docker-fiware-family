@@ -1,0 +1,6 @@
+# Docker compose CLI
+docker-compose.override.yml
+
+# Docker compose volume data
+data/*
+!data/.gitkeep
