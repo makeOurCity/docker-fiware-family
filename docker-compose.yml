@@ -1,5 +1,31 @@
 version: "3.5"
 services:
+  kong:
+    image: kong:3.0.0-alpine
+    ports:
+      - 18000:8000
+      # - 8443:8443
+      - 8001:8001
+      # - 8444:8444
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: postgresql
+      KONG_PG_USER: root
+      KONG_PG_PASSWORD: root
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
+    depends_on:
+      - postgresql
+
+  konga:
+    image: pantsel/konga:0.14.9
+    ports:
+      - 28080:8080
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8080
+    depends_on:
+      - postgresql
+
   orion:
     image: fiware/orion:3.7.0
     ports:
@@ -27,18 +53,18 @@ services:
     depends_on:
       - mongodb
 
-  sth-comet:
-    image: fiware/sth-comet:2.9.0
-    ports:
-      - 8666:8666
-    environment:
-      STH_HOST: 0.0.0.0
-      STH_PORT: 8666
-      DB_PREFIX: sth_
-      DB_URI: mongodb:27017
-      LOGOPS_LEVEL: DEBUG
-    depends_on:
-      - mongodb
+  # sth-comet:
+  #   image: fiware/sth-comet:2.9.0
+  #   ports:
+  #     - 8666:8666
+  #   environment:
+  #     STH_HOST: 0.0.0.0
+  #     STH_PORT: 8666
+  #     DB_PREFIX: sth_
+  #     DB_URI: mongodb:27017
+  #     LOGOPS_LEVEL: DEBUG
+  #   depends_on:
+  #     - mongodb
 
   # MongoDB used by Orion, Cygnus and STH-Comet
   mongodb:
@@ -51,12 +77,13 @@ services:
 
   # PostgreSQL used by Kong
   postgresql:
-    image: postgres:11.6
+    image: postgres:9.6
     ports:
       - 5432:5432
     volumes:
       - ./data/postgres:/docker-entrypoint-initdb.d
     environment:
+      POSTGRES_DB: kong
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
