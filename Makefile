@@ -2,6 +2,7 @@
 
 build:
 	docker compose up -d postgresql
+	./wait-for-docker-compose-postgres.sh
 	docker compose run --rm kong kong migrations bootstrap
 
 serve:

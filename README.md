@@ -7,12 +7,10 @@
 ### 1. 事前準備
 
 データベースの初期化を以下のコマンドで行う。
+これは一度行ったら、初期化などを行わない限り再実行する必要はありません。
 
 ```console
-$ docker compose up -d postgresql # postgresql の起動を待ってください
-...
-
-$ docker compose run --rm kong kong migrations bootstrap # kongに必要な情報の作成
+$ make build
 ```
 
 ### 2. 各種サービス起動
@@ -26,7 +24,9 @@ $ make serve
 kongaの管理画面にアクセスしてadminユーザーを作成する。
 http://localhost:28080
 
-ユーザー作成後に再度ログインを行うと、コネクションを作成させられるので、以下の情報を入れる。
+#### 3-1. コネクションを作成
+
+ユーザー作成後に再度ログインを行うと、kongaがkongに接続するために必要なコネクションを作成させられるので、以下の情報を入れる。
 
 | name           | value            | description                          |
 | :------------- | :--------------- | :----------------------------------- |
@@ -35,7 +35,7 @@ http://localhost:28080
 
 ### 4. kongaでのupstreamの作成
 
-サービスを作成
+#### 4-1. サービスを作成
 
 | name | value        | description                      |
 | :--- | :----------- | :------------------------------- |
@@ -43,7 +43,7 @@ http://localhost:28080
 | Host | orion        | kongのupstreamのホスト名         |
 | Port | 1026         | orionがlistenしてるポート        |
 
-ルートを作成
+#### 4-2. ルートを作成
 
 作成したサービスからルートを追加する
 
@@ -60,10 +60,10 @@ http://localhost:28080
 - https://qiita.com/nsuhara/items/a0de75e6767f98cc8fec)
 - https://qiita.com/popy1017/items/0c5a135c852766330973
 
-### orionの確認
+### 5. orionの確認
 
 ```console
-$ curl http://localhost:18000/orion/version
+$ curl http://localhost:8000/orion/version
 HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 740
@@ -97,4 +97,10 @@ Via: kong/3.0.0
   }
 }
 }
+```
+# その他コマンド
+
+```console
+# 起動済みのpostgresqlのコンソールに入る。
+$  docker compose exec postgresql psql kong 
 ```
