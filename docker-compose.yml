@@ -53,18 +53,18 @@ services:
     depends_on:
       - mongodb
 
-  # sth-comet:
-  #   image: fiware/sth-comet:2.9.0
-  #   ports:
-  #     - 8666:8666
-  #   environment:
-  #     STH_HOST: 0.0.0.0
-  #     STH_PORT: 8666
-  #     DB_PREFIX: sth_
-  #     DB_URI: mongodb:27017
-  #     LOGOPS_LEVEL: DEBUG
-  #   depends_on:
-  #     - mongodb
+  sth-comet:
+    image: fiware/sth-comet:2.9.0
+    ports:
+      - 8666:8666
+    environment:
+      STH_HOST: 0.0.0.0
+      STH_PORT: 8666
+      DB_PREFIX: sth_
+      DB_URI: mongodb:27017
+      LOGOPS_LEVEL: DEBUG
+    depends_on:
+      - mongodb
 
   # MongoDB used by Orion, Cygnus and STH-Comet
   mongodb:
