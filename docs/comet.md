@@ -43,47 +43,24 @@ $ curl -X "POST" "http://localhost:1026/v2/entities" \
      -H 'Fiware-Service: ushio_test' \
      -H 'Content-Type: application/json; charset=utf-8' \
      -d $'{
+  "id": "Car1",
+  "speed": {
+    "type": "Number",
+    "value": "1"
+  },
+  "type": "Car",
   "name": {
     "type": "String",
     "value": "store-name"
-  },
-  "id": "urn:ngsild:Store:001",
-  "type": "Store",
-  "location": {
-    "type": "geo:json",
-    "value": {
-      "type": "Point",
-      "coordinates": [
-        13.3986,
-        52.5547
-      ]
-    }
-  },
-  "address": {
-    "type": "PostalAddress",
-    "value": {
-      "addressLocality": "Prenzlauer Berg",
-      "addressRegion": "Berlin",
-      "streetAddress": "Bornholmer Straße 65",
-      "postalCode": "10439"
-    },
-    "metadata": {
-      "verified": {
-        "value": true,
-        "type": "Boolean"
-      }
-    }
   }
 }'
+
 ```
 
 ```console
-$ curl -X "PUT" "http://localhost:1026/v2/entities/urn:ngsild:Store:001/attrs/name" \
+$ curl -X "PUT" "http://localhost:1026/v2/entities/Car1/attrs/speed/value" \
      -H 'Authorization: ' \
      -H 'Fiware-Service: ushio_test' \
-     -H 'Content-Type: application/json; charset=utf-8' \
-     -d $'{
-  "value": "updated store name1",
-  "type": "String"
-}'
+     -H 'Content-Type: text/plain; charset=utf-8' \
+     -d "200"
 ```
