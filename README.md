@@ -6,9 +6,10 @@
 
 ## ブラウザからアクセス可能なGUIツール
 
-| name  | URL                   | description                    |
-| :---- | :-------------------- | :----------------------------- |
-| Konga | http://localhost:8080 | kongを管理するためのコンソール |
+| name          | URL                   | description                    |
+| :------------ | :-------------------- | :----------------------------- |
+| Konga         | http://localhost:8080 | kongを管理するためのコンソール |
+| mongo-express | http://localhost:8081 | mongodbのデータを見るツール    |
 
 # 開始
 

@@ -1,5 +1,7 @@
 # STH-Comet の動作確認
 
+https://fiwaretourguide.letsfiware.jp/generating-historical-context-information-sth-comet/how-to-generate-the-history-of-Context-Information-using-STH-Comet/
+
 ## サブスクリプションの登録
 
 ```console

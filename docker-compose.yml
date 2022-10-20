@@ -66,6 +66,16 @@ services:
     depends_on:
       - mongodb
 
+  mongo-express:
+    image: mongo-express:1.0.0-alpha.4
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    depends_on:
+      - mongodb
+
   # MongoDB used by Orion, Cygnus and STH-Comet
   mongodb:
     image: mongo:3.6
