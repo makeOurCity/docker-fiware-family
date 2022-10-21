@@ -5,7 +5,7 @@
 # 構成図
 
 <img src="docs/images/MoC_docker_fiware_family.drawio.png" width="700">
-編集は[こちら](https://app.diagrams.net/?src=about#G1i-GU5GV1pVsDwISIoY4XM0AxO07Kz9Od)。編集・閲覧権限は管理者に問い合わせください。
+編集は(こちら)[https://app.diagrams.net/?src=about#G1i-GU5GV1pVsDwISIoY4XM0AxO07Kz9Od]。編集・閲覧権限は管理者に問い合わせください。
 
 # Getting Started
 
