@@ -4,7 +4,7 @@
 
 # 構成図
 
-![](docs/images/MoC_docker_fiware_family.drawio.png | width=200)
+<img src="docs/images/MoC_docker_fiware_family.drawio.png" width="200">
 
 # Getting Started
 
