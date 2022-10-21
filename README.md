@@ -2,6 +2,10 @@
 
 [![test build](https://github.com/ushios/docker-fiware-family/actions/workflows/test_build.yml/badge.svg)](https://github.com/ushios/docker-fiware-family/actions/workflows/test_build.yml)
 
+# 構成図
+
+![](MoC_docker_fiware_family.drawio.png | width=200)
+
 # Getting Started
 
 ## Using Docker
