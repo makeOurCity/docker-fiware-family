@@ -34,30 +34,29 @@ services:
     image: fiware/orion:3.7.0
     ports:
       - 1026:1026
-    command: ["-dbhost", "mongodb-orion"]
     environment:
-      ORION_MONGO_HOST: mongodb-orion:27017
+      ORION_MONGO_HOST: mongodb:27017
       ORION_PORT: 1026
       ORION_LOG_LEVEL: INFO
     depends_on:
-      - mongodb-orion
+      - mongodb
     networks:
       - default
 
   cygnus:
     image: fiware/cygnus-ngsi:2.19.0
     environment:
-      CYGNUS_MONGO_HOSTS: mongodb-sth:27018
+      CYGNUS_MONGO_HOSTS: mongodb:27017
       CYGNUS_MONGO_SERVICE_PORT: 5050
       CYGNUS_LOG_LEVEL: DEBUG
-      CYGNUS_SERVICE_PORT: 5055
+      CYGNUS_SERVICE_PORT: 5050
       CYGNUS_API_PORT: 5080
     ports:
       - 5080:5080
       - 5050:5050
       - 5055:5055
     depends_on:
-      - mongodb-sth
+      - mongodb
     networks:
       - default
 
@@ -69,34 +68,24 @@ services:
       STH_HOST: 0.0.0.0
       STH_PORT: 8666
       DB_PREFIX: sth_
-      DB_URI: mongodb-sth:27018
+      DB_URI: mongodb:27017
       LOGOPS_LEVEL: DEBUG
     depends_on:
-      - mongodb-sth
-    networks:
-      - default
-
-  # MongoDB used by Orion
-  mongodb-orion:
-    image: mongo:4.2
-    ports:
-      - 27017:27017
-    volumes:
-      - ./data/mongodb-orion:/data/db
-      - ./data/configdb:/data/configdb
-    depends_on:
-      - mongodb-sth
+      - mongodb
     networks:
       - default
 
   # MongoDB used by Cygnus and STH-Comet
-  mongodb-sth:
-    image: mongo:4.2
-    command: mongod --port 27018
+  mongodb:
+    image: mongo:5.0
+    command: mongod --port 27017
     ports:
-      - 27018:27018
+      - 27017:27017
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: admin
     volumes:
-      - ./data/mongodb-sth:/data/db
+      - ./data/mongodb:/data/db
       - ./data/configdb:/data/configdb
     networks:
       - default
@@ -107,9 +96,9 @@ services:
       - 8081:8081
     environment:
       ME_CONFIG_MONGODB_PORT: 27017
-      ME_CONFIG_MONGODB_SERVER: mongodb-orion
+      ME_CONFIG_MONGODB_SERVER: mongodb
     depends_on:
-      - mongodb-orion
+      - mongodb
     networks:
       - default
 
