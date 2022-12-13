@@ -118,3 +118,12 @@ services:
     user: root
     networks:
       - default
+
+
+  pgadmin:
+    image: dpage/pgadmin4:6.12
+    ports:
+      - 18080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
